@@ -1,9 +1,30 @@
 
+import { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import { consultarAPI } from "../helpers/queries";
 import ItemProducto from "./producto/ItemProducto";
 
 
 const Administrador = () => {
+  const [productos, setProductos] = useState([])
+
+
+  useEffect(()=>{
+
+    // opcion 1
+    consultarAPI().then((respuesta)=>{
+      console.log(respuesta)
+      setProductos(respuesta)
+    })
+
+    // opcion 2
+    // const consultaPrueba = async()=>{
+    //   const prueba = await consultarAPI();
+    //   console.log(prueba);
+    // }
+    // consultaPrueba();
+
+  },[])
 
   return (
     <section className="container mainSection">
@@ -26,8 +47,9 @@ const Administrador = () => {
           </tr>
         </thead>
         <tbody>
-        <ItemProducto></ItemProducto> 
-         
+          {
+            productos.map((producto)=> <ItemProducto key={producto.id} producto={producto}></ItemProducto> )
+          }
         </tbody>
       </Table>
     </section>
