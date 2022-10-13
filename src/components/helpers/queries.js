@@ -1,6 +1,6 @@
 //archivo que nos siver para hacer las consultas a la api (json-server)
 
-const URL ='http://localhost:3005/productos';
+const URL ='http://localhost:3004/productos';
 
 // tipos de peticiones
 // peticion GET que trae todos los productos o un producto
