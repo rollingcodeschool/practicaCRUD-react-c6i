@@ -28,11 +28,8 @@ export const crearProductoAPI = async(producto)=>{
                 "Content-Type":"application/json"
             },
             body: JSON.stringify(producto)
-
         });
-        const listaProdutos = await respuesta.json()
-        // console.log(listaProdutos)
-        return listaProdutos;
+        return respuesta;
     }catch(error){
         console.log(error);
     }
