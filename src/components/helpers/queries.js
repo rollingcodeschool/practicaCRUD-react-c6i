@@ -48,8 +48,10 @@ export const borrarProductoAPI = async(id)=>{
 export const obtenerProductoAPI = async(id)=>{
     try{
         const respuesta = await fetch(URL+'/'+id);
-        const productoBuscado = await respuesta.json()
-        // console.log(listaProdutos)
+        const productoBuscado = {
+            dato: await respuesta.json(),
+            status: respuesta.status
+        }  
         return productoBuscado;
     }catch(error){
         console.log(error);
