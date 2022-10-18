@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import { obtenerProductoAPI } from "../../helpers/queries";
+import { useParams, useNavigate } from "react-router-dom";
+import { editarProductoAPI, obtenerProductoAPI } from "../../helpers/queries";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
@@ -21,6 +21,7 @@ const EditarProducto = () => {
       categoria: "",
     },
   });
+  const navegacion = useNavigate();
 
   useEffect(()=>{
     obtenerProductoAPI(id).then((respuesta)=>{
@@ -40,6 +41,15 @@ const EditarProducto = () => {
   const onSubmit = (producto) =>{
     console.log(producto)
     //aqui quiero enviar la peticion a la api para actualizar los datos del producto
+    editarProductoAPI(id,producto).then((respuesta)=>{
+      if(respuesta.status===200){
+        Swal.fire('Producto actualizado', 'el producto fue actualizado correctamente', 'success');
+        //redireccionar
+        navegacion('/administrador');
+      }else{
+        Swal.fire('Ocurrio un error', 'Intente este paso en unos minutos', 'error')
+      }
+    })
   }
 
   return (
