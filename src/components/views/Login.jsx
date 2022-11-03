@@ -24,8 +24,8 @@ const Login = () => {
               <Form.Control
                 type="email"
                 placeholder="Ingrese un email"
-                {...register('usuario',{
-                  required:'El nombre de usuario es obligatorio'
+                {...register("usuario", {
+                  required: "El nombre de usuario es obligatorio",
                 })}
               />
               <Form.Text className="text-danger">
@@ -38,8 +38,8 @@ const Login = () => {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                {...register('password',{
-                  required:'El nombre de password es obligatorio'
+                {...register("password", {
+                  required: "El nombre de password es obligatorio",
                 })}
               />
               <Form.Text className="text-danger">
