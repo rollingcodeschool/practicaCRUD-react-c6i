@@ -11,8 +11,13 @@ import Menu from './components/common/Menu';
 import Footer from './components/common/Footer';
 import Login from './components/views/Login';
 import Registro from './components/views/Registro';
+import { useState } from 'react';
 
 function App() {
+  const usuario = JSON.parse(localStorage.getItem("tokenUsuario")) || {};
+  const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
+
+
   return (
     <BrowserRouter>
       <Menu></Menu>
@@ -38,12 +43,12 @@ function App() {
         <Route
           exact
           path="/login"
-          element={<Login></Login>}
+          element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}
         ></Route>
         <Route
           exact
           path="/registro"
-          element={<Registro></Registro>}
+          element={<Registro setUsuarioLogueado={setUsuarioLogueado}></Registro>}
         ></Route>
           <Route path='*' element={<Error404></Error404>} />
         </Routes>

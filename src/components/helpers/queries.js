@@ -2,6 +2,7 @@
 
 // const URL ='http://localhost:3004/productos'; //json-server
 const URL ='http://localhost:4000/apicafe/productos';
+const URL_USER ='http://localhost:3004/usuarios';
 
 // tipos de peticiones
 // peticion GET que trae todos los productos o un producto
@@ -72,3 +73,44 @@ export const editarProductoAPI = async(id, datosActualizados)=>{
         console.log(error);
     }
 }
+
+export const crearUsuario = async (usuario) => {
+    try {
+      console.log(usuario);
+      const respuesta = await fetch(URL_USER, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(usuario),
+      });
+      return respuesta;
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
+
+  
+export const login = async (usuario) =>{
+    try{
+      //verificar si el usuario existe
+      const respuesta = await fetch(URL_USER);
+      const listaUsuarios = await respuesta.json();
+      //buscar cual usuario tiene mi mail
+      const usuarioBuscado = listaUsuarios.find((itemUsuario)=> itemUsuario.email === usuario.email )
+      if(usuarioBuscado){
+        console.log('email encontrado')
+        //verificar el password
+        if(usuarioBuscado.password === usuario.password ){
+          return usuarioBuscado
+        }
+      }else{
+        console.log('el mail no existe')
+        return
+      }
+    }catch(error){
+      console.log('errores en el login')
+      return
+    }
+  }

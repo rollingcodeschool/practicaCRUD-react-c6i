@@ -1,8 +1,12 @@
 import { Form, Button, Container, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { login } from "../helpers/queries";
 
-const Login = () => {
+
+const Login = ({setUsuarioLogueado}) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -11,6 +15,22 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    login(data).then((respuesta) => {
+      console.log(respuesta);
+      if (respuesta) {
+        //almaceno el usuario en el state y localstorage
+        localStorage.setItem("tokenUsuario", JSON.stringify(respuesta));
+        setUsuarioLogueado(respuesta);
+        // si el usuario es correcto entonces redirecciono al admin
+        navigate("/administrador");
+      } else {
+        Swal.fire(
+          "Error",
+          "Nombre de usuario o password incorrecto",
+          "error"
+        );
+      }
+    });
   };
 
   return (
@@ -24,7 +44,7 @@ const Login = () => {
               <Form.Control
                 type="email"
                 placeholder="Ingrese un email"
-                {...register("usuario", {
+                {...register("email", {
                   required: "El nombre de usuario es obligatorio",
                 })}
               />
@@ -46,11 +66,9 @@ const Login = () => {
                 {errors.password?.message}
               </Form.Text>
             </Form.Group>
-            <div className="mb-3">
-              <Link to={"/registro"}>Crear una cuenta</Link>
-            </div>
+          
             <Button variant="primary" type="submit">
-              Iniciar
+              Ingresar
             </Button>
           </Form>
         </Card.Body>

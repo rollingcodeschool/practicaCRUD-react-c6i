@@ -36,5 +36,12 @@
       "id": 9
     }
   ],
-  "usuarios": []
+  "usuarios": [
+    {
+      "nombre": "emi",
+      "email": "emi@mail.com",
+      "password": "12345678",
+      "id": 1
+    }
+  ]
 }

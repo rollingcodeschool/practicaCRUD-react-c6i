@@ -1,15 +1,35 @@
 import { Card, Container, Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { crearUsuario } from "../helpers/queries";
 
-const Registro = () => {
+
+const Registro = ({setUsuarioLogueado}) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
+    crearUsuario(data).then((respuesta) => {
+      if (respuesta.status === 201) {
+        Swal.fire(
+          `Usuario creado`,
+          `El usuario ${data.nombre} se creo correctamente`,
+          "success"
+        );
+        reset()
+      } else {
+        Swal.fire(
+          `Hubo un error inesperado`,
+          "Intentelo nuevamente en breve.",
+          "error"
+        );
+      }
+    });
   };
 
   return (

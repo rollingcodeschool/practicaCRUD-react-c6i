@@ -11,10 +11,7 @@ const Inicio = () => {
 
 
   useEffect(()=>{
-
-    // opcion 1
     consultarAPI().then((respuesta)=>{
-      console.log(respuesta)
       setProductos(respuesta)
     })
   },[])
