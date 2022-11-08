@@ -1,8 +1,8 @@
 //archivo que nos siver para hacer las consultas a la api (json-server)
 
 // const URL ='http://localhost:3004/productos'; //json-server
-const URL = process.env.REACT_APP_API_CAFE;
-const URL_USER ='http://localhost:3004/usuarios';
+const URL = process.env.REACT_APP_API_LOCAL;
+const URL_USER =process.env.REACT_APP_API_USER;
 
 // tipos de peticiones
 // peticion GET que trae todos los productos o un producto
@@ -114,3 +114,27 @@ export const login = async (usuario) =>{
       return
     }
   }
+
+//   export const login = async (usuario) =>{
+//     try {
+//       console.log(usuario);
+//       const respuesta = await fetch(URL_USER, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(usuario),
+//       });
+//       const datos = await respuesta.json();
+//       return {
+//         status: respuesta.status,
+//         mensaje: datos.mensaje,
+//         usuario: datos.usuario,
+//         token: datos.token,
+//         uid: datos.uid,
+//       };
+//     } catch (error) {
+//       console.log("errores en el login");
+//       return;
+//     }
+//   }
