@@ -45,7 +45,7 @@ const EditarProducto = () => {
       if(respuesta.status===200){
         Swal.fire('Producto actualizado', 'el producto fue actualizado correctamente', 'success');
         //redireccionar
-        navegacion('/administrador');
+        navegacion('/administrar');
       }else{
         Swal.fire('Ocurrio un error', 'Intente este paso en unos minutos', 'error')
       }

@@ -32,7 +32,7 @@ const navegacion = useNavigate();
         Swal.fire('Producto creado','El producto fue creado correctamente','success');
         reset();
         //redireccionar
-        navegacion('/administrador');
+        navegacion('/administrar');
       }else{
         //mostrar un mensaje de error al usuario
         Swal.fire('Ocurrio un error','vuelva a intentarlo mas tarde','error');

@@ -25,10 +25,10 @@ const logout = ()=>{
             </NavLink>
             {usuarioLogueado.nombre ? (
               <>
-                <NavLink end className="nav-item nav-link" to="/administrador">
+                <NavLink end className="nav-item nav-link" to="/administrar">
                   Administrar
                 </NavLink>
-                <NavLink end className="nav-item nav-link" to="/registro">
+                <NavLink end className="nav-item nav-link" to="/administrar/registro">
                   Registro
                 </NavLink>
                 <Button variant="dark" onClick={logout}>Logout</Button>

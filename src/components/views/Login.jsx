@@ -22,7 +22,7 @@ const Login = ({setUsuarioLogueado}) => {
         localStorage.setItem("tokenUsuario", JSON.stringify(respuesta));
         setUsuarioLogueado(respuesta);
         // si el usuario es correcto entonces redirecciono al admin
-        navigate("/administrador");
+        navigate("/administrar");
       } else {
         Swal.fire(
           "Error",

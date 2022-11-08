@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { crearUsuario } from "../helpers/queries";
 
 
-const Registro = ({setUsuarioLogueado}) => {
+const Registro = () => {
   const {
     register,
     handleSubmit,
